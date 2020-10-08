@@ -25,13 +25,7 @@ export default function useFetch(url, params = {}, options = {}) {
 
       dispatch(updateQuery({ url, time: performance.now() - time, completed: Date.now() }));
 
-      if (status >= 400) {
-        setError(data);
-        setData(null);
-      } else {
-        setData(data);
-      }
-
+      setData(data);
       setStatus(status);
       onDataLoad(data);
     } catch (e) {

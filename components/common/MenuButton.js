@@ -9,8 +9,7 @@ export default function MenuButton({
   icon,
   value,
   options,
-  buttonClassName,
-  menuClassName,
+  menuClassname,
   menuPosition = 'bottom',
   menuAlign = 'right',
   onSelect,
@@ -39,7 +38,7 @@ export default function MenuButton({
     <div className={styles.container} ref={ref}>
       <Button
         icon={icon}
-        className={classNames(styles.button, buttonClassName, { [styles.open]: showMenu })}
+        className={classNames(styles.button, { [styles.open]: showMenu })}
         onClick={toggleMenu}
         variant="light"
       >
@@ -47,7 +46,7 @@ export default function MenuButton({
       </Button>
       {showMenu && (
         <Menu
-          className={menuClassName}
+          className={menuClassname}
           options={options}
           selectedOption={selectedOption}
           onSelect={handleSelect}

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import Loading from 'components/common/Loading';
-import ErrorMessage from 'components/common/ErrorMessage';
 import useFetch from 'hooks/useFetch';
 import useDateRange from 'hooks/useDateRange';
 import { formatShortTime, formatNumber, formatLongNumber } from 'lib/format';
@@ -18,7 +17,7 @@ export default function MetricsBar({ websiteId, token, className }) {
     query: { url },
   } = usePageQuery();
 
-  const { data, error, loading } = useFetch(
+  const { data } = useFetch(
     `/api/website/${websiteId}/metrics`,
     {
       start_at: +startDate,
@@ -41,9 +40,9 @@ export default function MetricsBar({ websiteId, token, className }) {
 
   return (
     <div className={classNames(styles.bar, className)} onClick={handleSetFormat}>
-      {!data && loading && <Loading />}
-      {error && <ErrorMessage />}
-      {data && !error && (
+      {!data ? (
+        <Loading />
+      ) : (
         <>
           <MetricCard
             label={<FormattedMessage id="metrics.views" defaultMessage="Views" />}

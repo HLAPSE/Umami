@@ -4,7 +4,9 @@ const pkg = require('./package.json');
 module.exports = {
   env: {
     VERSION: pkg.version,
-    FORCE_SSL: !!process.env.FORCE_SSL,
+  },
+  serverRuntimeConfig: {
+    PROJECT_ROOT: __dirname,
   },
   webpack(config) {
     config.module.rules.push({
@@ -16,18 +18,5 @@ module.exports = {
     });
 
     return config;
-  },
-  async headers() {
-    return [
-      {
-        source: '/umami.js',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=2592000', // 30 days
-          },
-        ],
-      },
-    ]
   },
 };

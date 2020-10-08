@@ -33,7 +33,7 @@ export default function LanguageButton() {
         icon={<Globe />}
         options={menuOptions}
         value={locale}
-        menuClassName={styles.menu}
+        menuClassname={styles.menu}
         renderValue={option => option?.display}
         onSelect={handleSelect}
       />

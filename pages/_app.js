@@ -3,7 +3,6 @@ import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { useStore } from 'redux/store';
 import useLocale from 'hooks/useLocale';
-import useForceSSL from 'hooks/useForceSSL';
 import { messages } from 'lib/lang';
 import 'styles/variables.css';
 import 'styles/bootstrap-grid.css';
@@ -22,7 +21,6 @@ const Intl = ({ children }) => {
 };
 
 export default function App({ Component, pageProps }) {
-  useForceSSL(process.env.FORCE_SSL);
   const store = useStore();
 
   return (
